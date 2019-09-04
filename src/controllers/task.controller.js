@@ -7,7 +7,7 @@ const controller = {
   },
 
   create: async (req, h) => {
-    if(!req.payload.text){
+    if(!req.payload || !req.payload.text){
       return h.response({ error: 'Missing field!' }).code(400)
     }
 
