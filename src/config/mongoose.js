@@ -10,6 +10,8 @@ mongoose.connection.on('error', (err) => {
   process.exit(-1)
 })
 
+mongoose.set('debug', true);
+
 export default {
   connect: () => {
     mongoose.connect(mongo.uri, {
