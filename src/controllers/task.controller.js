@@ -7,9 +7,7 @@ const controller = {
   },
 
   create: async (req, h) => {
-    if(!req.payload || !req.payload.text){
-      return h.response({ error: 'Missing field!' }).code(400)
-    }
+    if(!req.payload || !req.payload.text) return h.response({ error: 'Missing field!' }).code(400)
 
     let task = new Task({
       done: false,
@@ -22,6 +20,8 @@ const controller = {
   },
 
   get: async (req, h) => {
+    if(!req.params.id.match(/^[0-9a-fA-F]{24}$/)) return h.response({ error: 'Invalid Task ID!' }).code(400)
+
     const task = await Task.findById(req.params.id).exec()
     if (!task) return h.response({ error: 'No task with id: ' + req.params.id }).code(400)
 
@@ -29,6 +29,8 @@ const controller = {
   },
 
   delete: async (req, h) => {
+    if(!req.params.id.match(/^[0-9a-fA-F]{24}$/)) return h.response({ error: 'Invalid Task ID!' }).code(400)
+
     const task = await Task.findById(req.params.id).exec()
     if (!task) return h.response({ error: 'No task with id: ' + req.params.id }).code(400)
 
@@ -37,6 +39,8 @@ const controller = {
   },
 
   update: async (req, h) => {
+    if(!req.params.id.match(/^[0-9a-fA-F]{24}$/)) return h.response({ error: 'Invalid Task ID!' }).code(400)
+
     const task = await Task.findById(req.params.id).exec()
     if (!task) return h.response({ error: 'No task with id: ' + req.params.id }).code(400)
 
