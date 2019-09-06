@@ -1,5 +1,6 @@
 import hapi from 'hapi'
 import taskRoutes from '../routes/task.routes'
+import tagRoutes from '../routes/task_tag.routes'
 
 const server = hapi.server({
   port: 5000,
@@ -17,7 +18,8 @@ server.events.on('response', function (request) {
 });
 
 server.route([
-  ...taskRoutes
+  ...taskRoutes,
+  ...tagRoutes
 ])
 
 export default server

@@ -1,8 +1,9 @@
 import Task from '../models/task.model'
+import TaskTag from '../models/task_tag.model'
 
 const controller = {
   list: async (req, h) => {
-    const task_list = await Task.find().exec()
+    const task_list = await Task.find().populate('tags').exec()
     return task_list
   },
 
@@ -11,7 +12,8 @@ const controller = {
 
     let task = new Task({
       done: false,
-      text: req.payload.text
+      text: req.payload.text,
+      tags: []
     })
 
     task.save()
@@ -46,6 +48,7 @@ const controller = {
 
     task.done = req.payload.done !== undefined ? req.payload.done : task.done
     task.text = req.payload.text !== undefined ? req.payload.text : task.text
+    task.tags = req.payload.tags !== undefined ? req.payload.tags : task.tags
 
     await task.save()
 
