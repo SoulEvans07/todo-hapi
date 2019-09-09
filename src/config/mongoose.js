@@ -3,6 +3,7 @@ import { mongo } from './vars'
 
 mongoose.Promise = global.Promise
 mongoose.set('useCreateIndex', true)
+mongoose.set('useUnifiedTopology', true)
 
 // Exit application on error
 mongoose.connection.on('error', (err) => {
@@ -10,7 +11,7 @@ mongoose.connection.on('error', (err) => {
   process.exit(-1)
 })
 
-mongoose.set('debug', true);
+mongoose.set('debug', true)
 
 export default {
   connect: () => {

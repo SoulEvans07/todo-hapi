@@ -7,7 +7,19 @@ const TaskSchema = new Schema({
     tags: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'TaskTag'
-    }]
+    }],
 });
 
-module.exports = mongoose.model('Task', TaskSchema);
+TaskSchema.add({
+    subtasks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        refs: 'Task'
+    }],
+    parent: {
+        type: mongoose.Schema.Types.ObjectId,
+        refs: 'Task'
+    }
+})
+
+const TaskModel = mongoose.model('Task', TaskSchema)
+export default TaskModel

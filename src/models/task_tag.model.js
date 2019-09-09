@@ -7,4 +7,5 @@ const TaskTagSchema = new Schema({
     background: String
 });
 
-module.exports = mongoose.model('TaskTag', TaskTagSchema);
+const TaskTagModel = mongoose.model('TaskTag', TaskTagSchema)
+export default TaskTagModel
