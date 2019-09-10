@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "dev": "nodemon --exec babel-node src/main.js",
-    "seed": "npx babel-node --presets @babel/preset-env ./db/seed.js"
+    "db": "npx babel-node --presets @babel/preset-env ./db/db.js"
   },
   "author": "soul evans",
   "license": "ISC",
