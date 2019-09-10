@@ -9,7 +9,7 @@ seeder.run = async function() {
       "tags": [],
       "subtasks": [],
       "done": false,
-      "text": "MultiTask #1",
+      "title": "MultiTask #1",
       "parent": null
     })
 
@@ -17,7 +17,7 @@ seeder.run = async function() {
       "tags": [],
       "subtasks": [],
       "done": false,
-      "text": "SubTask #1",
+      "title": "SubTask #1",
       "parent": null
     })
 
@@ -25,7 +25,7 @@ seeder.run = async function() {
       "tags": [],
       "subtasks": [],
       "done": false,
-      "text": "SubTask #2",
+      "title": "SubTask #2",
       "parent": null
     })
 
@@ -33,7 +33,7 @@ seeder.run = async function() {
       "tags": [],
       "subtasks": [],
       "done": false,
-      "text": "SubSubTask #1",
+      "title": "SubSubTask #1",
       "parent": null
     })
 

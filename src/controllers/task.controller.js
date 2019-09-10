@@ -8,11 +8,11 @@ const controller = {
   },
 
   create: async (req, h) => {
-    if(!req.payload || !req.payload.text) return h.response({ error: 'Missing field!' }).code(400)
+    if(!req.payload || !req.payload.title) return h.response({ error: 'Missing field!' }).code(400)
 
     let task = new Task({
       done: false,
-      text: req.payload.text,
+      title: req.payload.title,
       tags: [],
       parent: null,
       subtasks: []
@@ -59,7 +59,7 @@ const controller = {
     if (!task) return h.response({ error: 'No task with id: ' + req.params.id }).code(400)
 
     task.done = req.payload.done !== undefined ? req.payload.done : task.done
-    task.text = req.payload.text !== undefined ? req.payload.text : task.text
+    task.title = req.payload.title !== undefined ? req.payload.title : task.title
     task.tags = req.payload.tags !== undefined ? req.payload.tags : task.tags
     task.subtasks = req.payload.subtasks !== undefined ? req.payload.subtasks : task.subtasks
 

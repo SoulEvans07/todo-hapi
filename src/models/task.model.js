@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const TaskSchema = new Schema({
     done: Boolean,
-    text: String,
+    title: String,
     tags: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'TaskTag'
