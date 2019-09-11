@@ -18,7 +18,7 @@ const controller = {
       subtasks: []
     })
 
-    task.save()
+    await task.save()
 
     return h.response(task)
   },
@@ -31,6 +31,29 @@ const controller = {
     if (!task) return h.response({ error: 'No task with id: ' + req.params.id }).code(400)
 
     return h.response(task);
+  },
+
+  newSubtask: async (req, h) => {
+    if(!req.params.id.match(/^[0-9a-fA-F]{24}$/)) return h.response({ error: 'Invalid Task ID!' }).code(400)
+
+    const parent = await Task.findById(req.params.id).exec()
+    if (!parent) return h.response({ error: 'No task with id: ' + req.params.id }).code(400)
+
+    let task = new Task({
+      done: false,
+      title: req.payload.title,
+      tags: [],
+      parent: parent,
+      subtasks: []
+    })
+
+    await task.save()
+
+    parent.subtasks.push(task)
+    await parent.save()
+    task = await task.populate('parent').execPopulate()
+
+    return h.response(task)
   },
 
   delete: async (req, h) => {

@@ -40,6 +40,10 @@ async function main() {
       break
     case 'drop': await drop()
       break
+    case 'reset':
+      await drop()
+      await seed()
+      break
     default:
       usage()
   }
