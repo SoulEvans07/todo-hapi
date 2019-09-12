@@ -26,8 +26,13 @@ const controller = {
   get: async (req, h) => {
     if(!req.params.id.match(/^[0-9a-fA-F]{24}$/)) return h.response({ error: 'Invalid Task ID!' }).code(400)
 
-    //const task = await Task.findOne({ _id: req.params.id }).populate('subtasks').populate('tags').exec()
-    const task = await Task.findById(req.params.id).populate('subtasks').populate('tags').exec()
+    const task = await Task.findById(req.params.id)
+      .populate('parent')
+      .populate('tags')
+      .populate({
+        path: 'subtasks',
+        populate: { path: 'parent' }
+      }).exec()
     if (!task) return h.response({ error: 'No task with id: ' + req.params.id }).code(400)
 
     return h.response(task);

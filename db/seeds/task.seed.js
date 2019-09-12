@@ -18,7 +18,7 @@ seeder.run = async function() {
       "subtasks": [],
       "done": false,
       "title": "SubTask #1",
-      "parent": null
+      "parent": task1
     })
 
     const task3 = await this.model.create({
@@ -26,7 +26,7 @@ seeder.run = async function() {
       "subtasks": [],
       "done": false,
       "title": "SubTask #2",
-      "parent": null
+      "parent": task1
     })
 
     const task4 = await this.model.create({
@@ -34,20 +34,16 @@ seeder.run = async function() {
       "subtasks": [],
       "done": false,
       "title": "SubSubTask #1",
-      "parent": null
+      "parent": task2
     })
 
     task1.subtasks.push(task2)
-    task2.parent = task1
     task1.subtasks.push(task3)
-    task3.parent = task1
     task2.subtasks.push(task4)
-    task4.parent = task2
 
     await task1.save()
     await task2.save()
     await task3.save()
-    await task4.save()
   }
 }
 
